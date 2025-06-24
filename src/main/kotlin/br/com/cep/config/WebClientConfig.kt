@@ -13,7 +13,7 @@ import java.time.Duration
 import java.util.concurrent.TimeUnit
 
 @Configuration
-open class WebClientConfig {
+open class WebClientConfig(private val viaZipProperties: ViaZipProperties) {
 
     @Bean
     open fun webClient(): WebClient {
@@ -25,10 +25,8 @@ open class WebClientConfig {
             }
 
         return WebClient.builder()
-            .baseUrl("https://viacep.com.br")
+            .baseUrl(viaZipProperties.baseUrl)
             .clientConnector(ReactorClientHttpConnector(httpClient))
-            .filter(logRequest())
-            .filter(logResponse())
             .build()
     }
 

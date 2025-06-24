@@ -5,8 +5,8 @@ spring:
   application:
     name: cep-lookup-api
 
-  main:
-    allow-bean-definition-overriding: true
+via-cep:
+  base-url: https://viacep.com.br
 
 management:
   endpoints:
