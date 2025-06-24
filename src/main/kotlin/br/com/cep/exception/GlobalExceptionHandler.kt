@@ -1,0 +1,20 @@
+package br.com.cep.exception
+
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.RestControllerAdvice
+
+@RestControllerAdvice
+class GlobalExceptionHandler {
+
+    @ExceptionHandler(ExternalApiException::class)
+    fun handleExternalApiException(ex: ExternalApiException): ResponseEntity<String> {
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(ex.message)
+    }
+
+    @ExceptionHandler(Exception::class)
+    fun handleGenericException(ex: Exception): ResponseEntity<String> {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno: ${ex.message}")
+    }
+}
