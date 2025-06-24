@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono
 @Service
 class ZipService(private val viaCepClient: ViaZipClient) {
 
-    fun searchCep(cep: String): Mono<ZipCodeResponseDTO> {
-        return viaCepClient.fetchZipCode(cep)
+    fun getZipCodeInfo(zipCode: String): Mono<ZipCodeResponseDTO> {
+        return viaCepClient.fetchZipCode(zipCode)
     }
 }
