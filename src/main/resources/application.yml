@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: cep-lookup-api
+  cache:
+    type: caffeine
+
+caffeine:
+  spec: maximumSize=500,expireAfterWrite=10m
 
 via-cep:
   base-url: https://viacep.com.br
