@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 
 @Service
-class ZipService(private val viaCepClient: ViaZipClient) {
+open class ZipService(private val viaCepClient: ViaZipClient) {
 
-    @Cacheable("zipCodeCache")
-    fun getZipCodeInfo(zipCode: String): Mono<ZipCodeResponseDTO> {
+    open fun getZipCodeInfo(zipCode: String): Mono<ZipCodeResponseDTO> {
         return viaCepClient.fetchZipCode(zipCode)
     }
 }
